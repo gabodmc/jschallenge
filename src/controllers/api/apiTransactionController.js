@@ -15,17 +15,29 @@ const apiTransactionController = {
             })
     },
 
-    show: (req, res) => {
-        Transaction.findByPk((req.params.id), {
-            include: ['income', 'concept'],
-        }
-        )
-            .then(transactions => {
-                return res.status(200).json({
-                    data: transactions,
-                    status: 200
-                })
-            })
+    show: async (req, res) => {
+        let response = {
+            transaction: [],
+            status: null,
+        };
+        try {
+            let trx = await Transaction.findByPk(req.params.id, {
+                include: ['income', 'concept']
+            });
+                let destTransaction = {
+                    id: trx.id,
+                    amount: trx.amount,
+                    date: trx.date,
+                    income: trx.income.name,
+                    concept: trx.concept.name
+                }
+                response.transaction.push(destTransaction);
+                response.status = 200;
+            }
+            catch {
+                response.status = 500;
+            }
+            return res.json(response);
     },
 
     create: (req, res) => {
@@ -37,8 +49,8 @@ const apiTransactionController = {
                     data: transactions,
                     status: 200,
                     created: "ok"
+                })
             })
-        })
     },
 
     delete: (req, res) => {
