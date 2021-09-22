@@ -6,8 +6,8 @@ const app = express();
 const path = require('path');
 const port = process.env.PORT;
 
-const homeRouter = require('./routes/homeRouter');
-const apiMovementsRouter = require('./routes/api/apiMovementRouter');
+// const homeRouter = require('./routes/homeRouter');
+const apiTransactionRouter = require('./routes/api/apiTransactionRouter');
 
 app.set('views', path.resolve(__dirname, './views'));
 app.set ('view engine', 'ejs');
@@ -19,8 +19,8 @@ app.use(express.urlencoded({ extended: false }))
 app.use(express.json());
 
 
-app.use('/', homeRouter);
-app.use('/api/movements',apiMovementsRouter);
+// app.use('/', homeRouter);
+app.use('/api/movements', apiTransactionRouter);
 
 
 app.listen (port || 3001, () => {
