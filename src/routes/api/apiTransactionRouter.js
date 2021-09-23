@@ -4,8 +4,8 @@ const apiTransactionController = require('../../controllers/api/apiTransactionCo
 
 //Api Routes
 router.get('/', apiTransactionController.list);
-router.get('/:id', apiTransactionController.show);
 router.get('/search', apiTransactionController.search);
+router.get('/:id', apiTransactionController.show);
 router.post('/', apiTransactionController.create);
 router.delete('/:id', apiTransactionController.delete);
 

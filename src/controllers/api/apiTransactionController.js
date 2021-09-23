@@ -21,20 +21,20 @@ const apiTransactionController = {
         };
         try {
             let trx = await Transaction.findByPk(req.params.id);
-                let destTransaction = {
-                    id: trx.id,
-                    amount: trx.amount,
-                    date: trx.date,
-                    income: trx.income.name,
-                    concept: trx.concept.name
-                }
-                response.transaction.push(destTransaction);
-                response.status = 200;
+            let destTransaction = {
+                id: trx.id,
+                amount: trx.amount,
+                date: trx.date,
+                revenue: trx.revenue,
+                concept: trx.concept
             }
-            catch {
-                response.status = 500;
-            }
-            return res.json(response);
+            response.transaction.push(destTransaction);
+            response.status = 200;
+        }
+        catch {
+            response.status = 500;
+        }
+        return res.json(response);
     },
 
     create: (req, res) => {
@@ -62,19 +62,16 @@ const apiTransactionController = {
     },
 
     search: (req, res) => {
-        Transaction
-            .findAll({
+        Transaction.findAll({
                 where: {
-                     
-                        [Op.like]: '%' + req.query.keyword + '%'
-                    
+                    concept: { [Op.like]: '%' + req.query.keyword + '%' }
                 }
-            })
-            .then(transactions => {
-                if (transactions.length > 0) {
-                    return res.status(200).json(transactions);
+        })
+            .then(movements => {
+                if (movements.length > 0) {
+                    return res.status(200).json(movements);
                 }
-                return res.status(200).json("No hay resultados para ese concepto")
+                return res.status(200).json("No hay registros con ese concepto")
 
             })
     },
