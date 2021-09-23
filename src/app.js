@@ -6,14 +6,8 @@ const app = express();
 const path = require('path');
 const port = process.env.PORT;
 
-
 const apiTransactionRouter = require('./routes/api/apiTransactionRouter');
 
-
-app.set('views', path.resolve(__dirname, './views'));
-app.set ('view engine', 'ejs');
-
-app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, '../public')));
 app.use(cors());
 app.use(express.urlencoded({ extended: false }))

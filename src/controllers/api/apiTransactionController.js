@@ -67,9 +67,9 @@ const apiTransactionController = {
                     concept: { [Op.like]: '%' + req.query.keyword + '%' }
                 }
         })
-            .then(movements => {
-                if (movements.length > 0) {
-                    return res.status(200).json(movements);
+            .then(transactions => {
+                if (transactions.length > 0) {
+                    return res.status(200).json(transactions);
                 }
                 return res.status(200).json("No hay registros con ese concepto")
 
