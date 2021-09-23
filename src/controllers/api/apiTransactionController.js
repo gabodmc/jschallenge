@@ -1,11 +1,10 @@
 const { Transaction } = require('../../database/models');
+const { Op } = require("sequelize");
 
 const apiTransactionController = {
 
     list: (req, res) => {
-        Transaction.findAll({
-            include: ['income', 'concept']
-        })
+        Transaction.findAll()
             .then(transactions => {
                 return res.status(200).json({
                     total: transactions.length,
@@ -21,9 +20,7 @@ const apiTransactionController = {
             status: null,
         };
         try {
-            let trx = await Transaction.findByPk(req.params.id, {
-                include: ['income', 'concept']
-            });
+            let trx = await Transaction.findByPk(req.params.id);
                 let destTransaction = {
                     id: trx.id,
                     amount: trx.amount,
@@ -68,9 +65,9 @@ const apiTransactionController = {
         Transaction
             .findAll({
                 where: {
-                    concept: {
+                     
                         [Op.like]: '%' + req.query.keyword + '%'
-                    }
+                    
                 }
             })
             .then(transactions => {

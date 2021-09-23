@@ -10,13 +10,12 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-    Transaction.belongsTo(models.Concept, {as: 'concept'});
-    Transaction.belongsTo(models.Income, {as: 'income'})
+      // define association here
     }
   };
   Transaction.init({
-    incomeId: DataTypes.INTEGER,
-    conceptId: DataTypes.INTEGER,
+    revenue: DataTypes.STRING,
+    concept: DataTypes.STRING,
     amount: DataTypes.DECIMAL,
     date: DataTypes.DATE
   }, {
