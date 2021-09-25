@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Transaction.init({
-    revenue: DataTypes.STRING,
+    revenue: DataTypes.INTEGER,
     concept: DataTypes.STRING,
     amount: DataTypes.DECIMAL,
     date: DataTypes.DATE

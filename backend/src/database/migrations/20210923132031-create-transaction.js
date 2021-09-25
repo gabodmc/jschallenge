@@ -9,7 +9,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       revenue: {
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER
       },
       concept: {
         type: Sequelize.STRING
