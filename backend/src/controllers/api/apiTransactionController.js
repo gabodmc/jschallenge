@@ -2,44 +2,20 @@ const { Transaction } = require('../../database/models');
 const { Op } = require("sequelize");
 
 const apiTransactionController = {
-    list: async (req, res) => {
-        let response = {
-            count: null,
-            products: [],
-            balance: [
-                {
-                    incomes: null,
-                    outcomes: null,
-                }
-            ],
-            status: null,
-        };
-        let incomes = [];
-        let outcomes = [];
-        try {
-            let trx = await Transaction.findAndCountAll();
+    list: (req, res) => {
+        Transaction.findAll(
+            {
+                attributes: ['id', 'concept', 'amount', 'date', 'revenue'],
+            }
 
-            response.count = trx.rows.length;
-            response.products = trx.rows.map(row => {
-                row.revenue == 1 ? incomes.push(row.amount) : outcomes.push(row.amount)
-                response.balance[0].incomes = incomes;
-                response.balance[0].outcomes = outcomes;
-
-                let transaction = {
-                    id: row.id,
-                    revenue: row.revenue,
-                    concept: row.concept,
-                    amount: row.amount,
-                    date: row.date
-                }
-
-                return transaction;
+        )
+            .then(movements => {
+                return res.status(200).json({
+                    total: movements.length,
+                    transactions: movements,
+                    status: 200
+                })
             })
-        }
-        catch {
-            response.status = 500;
-        }
-        return res.json(response);
     },
 
     show: async (req, res) => {
@@ -67,9 +43,7 @@ const apiTransactionController = {
     },
 
     create: (req, res) => {
-        Transaction.create((req.body), {
-            include: ['income', 'concept'],
-        })
+        Transaction.create(req.body)
             .then(transactions => {
                 return res.status(200).json({
                     data: transactions,
@@ -93,7 +67,7 @@ const apiTransactionController = {
     search: (req, res) => {
         Transaction.findAll({
             where: {
-                concept: { [Op.like]: '%' + req.query.keyword + '%' }
+                id: { [Op.like]: '%' + req.query.keyword + '%' }
             }
         })
             .then(transactions => {
