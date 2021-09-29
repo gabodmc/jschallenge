@@ -1,16 +1,12 @@
 
 import React, { useState, } from "react";
-import {  Label, Input,  } from 'reactstrap';
+import { Label, Input, } from 'reactstrap';
 
 
 function Forms() {
-  
+
   const [inputs, setInputs] = useState({});
 
-  
-
-
-  
   const apiPost = async () => {
     await fetch("http://localhost:3001/api/movements/", {
       method: "POST",
@@ -40,63 +36,62 @@ function Forms() {
   const handleSubmit = (event) => {
     event.preventDefault();
     apiPost();
-    console.log(inputs);
   };
 
 
 
   return (
     <div>
-     <h1>Ingrese su operación</h1>
+      <h1>Ingrese su operación</h1>
       <div>
         <form onSubmit={handleSubmit}>
-        <div className="form-floating mb-3">
-          <input 
-          className="form-control" id="floatingInput"
-            type="text"
-            name="concept"
-            placeholder="concepto"
-            onChange={handleChange}
-          />{" "}
+          <div className="form-floating mb-3">
+            <input
+              className="form-control" id="floatingInput"
+              type="text"
+              name="concept"
+              placeholder="concepto"
+              onChange={handleChange}
+            />{" "}
             <label for="floatingInput">Concepto</label>
           </div>
           <br />
           <div className="form-floating mb-3">
-          <input
-          className="form-control" id="floatingInput"
-            type="number"
-            name="amount"
-            placeholder="amount"
-            onChange={handleChange}
-          />
-          <label for="floatingInput">Monto</label>
+            <input
+              className="form-control" id="floatingInput"
+              type="number"
+              name="amount"
+              placeholder="amount"
+              onChange={handleChange}
+            />
+            <label for="floatingInput">Monto</label>
           </div>
           <br />
           <div className="form-floating mb-3">
-          <input
-          className="form-control" id="floatingInput"
-            type="date"
-            name="date"
-            placeholder="date"
-            onChange={handleChange}
-          />
-          <label for="floatingInput">fecha</label>
+            <input
+              className="form-control" id="floatingInput"
+              type="date"
+              name="date"
+              placeholder="date"
+              onChange={handleChange}
+            />
+            <label for="floatingInput">fecha</label>
           </div>
-          <br /> 
-          
-         
-       
-        <Label for="exampleSelect">Tipo de operación</Label>
-        <Input className="form-control" type="select"  name="revenue" id="floatingInput" onChange={handleChange}>
-          <option>1</option>
-          <option>2</option>
-         </Input>
-        <br /> 
- 
+          <br />
 
 
-  
-          
+
+          <Label for="exampleSelect">Tipo de operación</Label>
+          <Input className="form-control" type="select" name="revenue" id="floatingInput" onChange={handleChange}>
+            <option>1</option>
+            <option>2</option>
+          </Input>
+          <br />
+
+
+
+
+
 
 
 

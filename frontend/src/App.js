@@ -1,7 +1,8 @@
 
 import './App.css';
-import { Container } from './components/container/Container';
+
 import Forms from './components/Forms';
+import { Home } from './components/Home';
 
 
 
@@ -10,8 +11,8 @@ function App() {
   return (
     <div className="App">
 
-<Container/>
-<Forms/>
+<Home />
+{/* <Forms/> */}
 
 
 

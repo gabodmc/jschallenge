@@ -31,9 +31,11 @@ class MovementList extends Component {
     render(){
         return (
             <React.Fragment>
+            
             <div className="card shadow mb-4">
                 <div className="card-body">
                     <div className="table-responsive">
+                    <h4>Ultimas 10 operaciones registradas</h4>
                         <table className="table table-bordered" id="dataTable" width="100%" cellSpacing="0">
                             <thead>
                                 <tr>

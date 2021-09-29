@@ -1,20 +1,22 @@
-import React from 'react';
-import { Navbar, Nav} from 'react-bootstrap/Navbar'
+import React, { useState, useEffect } from 'react'
+import Balance from './Balance'
 
 export const NavBar = () => {
-return (
+    const [item, setItem] = useState([])
 
-<>
-  <Navbar bg="dark" variant="dark">
-    <Container>
-    <Navbar.Brand href="#home">Navbar</Navbar.Brand>
-    <Nav className="me-auto">
-      <Nav.Link href="#home">Home</Nav.Link>
-      <Nav.Link href="#features">Features</Nav.Link>
-      <Nav.Link href="#pricing">Pricing</Nav.Link>
-    </Nav>
-    </Container>
-  </Navbar>
-  </>
-  )}
-  export default NavBar;
+    useEffect(() => {
+        data()
+    }, [])
+
+    const data = async () => {
+        await fetch('http://localhost:3001/api/movements/')
+            .then(response => response.json())
+            .then(receivedData => setItem(receivedData.transactions))
+    };
+    return (
+        <div>
+            <Balance item={item} />
+        </div>
+    )
+}
+export default NavBar;
