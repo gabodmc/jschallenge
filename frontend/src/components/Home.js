@@ -1,4 +1,5 @@
 import React from 'react'
+
 import MovementList from './MovementList/MovementList'
 import IncomeList from './Categories/IncomeList'
 import OutcomeList from './Categories/OutcomeList'
@@ -9,7 +10,6 @@ export const Home = () => {
 
     return (
         <div>
-
             <NavBar />
             <MovementList />
             <IncomeList />
@@ -17,3 +17,5 @@ export const Home = () => {
         </div>
     )
 }
+
+export default Home;

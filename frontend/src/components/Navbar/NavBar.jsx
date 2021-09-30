@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react'
+
+
 import Balance from './Balance'
 
 export const NavBar = () => {
@@ -15,7 +17,7 @@ export const NavBar = () => {
     };
     return (
         <div>
-            <Balance item={item} />
+               <Balance item={item} />
         </div>
     )
 }

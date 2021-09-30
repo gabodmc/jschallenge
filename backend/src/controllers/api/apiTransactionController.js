@@ -53,6 +53,18 @@ const apiTransactionController = {
             })
     },
 
+    update: (req, res) => {
+        let updatedTransaction = req.body
+    
+        Transaction.update(updatedTransaction,
+            {
+                where: {
+                    id: req.params.id
+                }
+            }).then((result) => res.redirect('/transactions/' + req.params.id))
+    
+},
+
     delete: (req, res) => {
         Transaction.destroy({
             where: {

@@ -3,7 +3,7 @@ import React, { useState, } from "react";
 import { Label, Input, } from 'reactstrap';
 
 
-export const Forms = () => {
+export const CreateTransaction = () => {
 
   const [inputs, setInputs] = useState({});
 
@@ -28,7 +28,6 @@ export const Forms = () => {
     event.persist();
     setInputs((inputs) => ({
       ...inputs,
-
       [event.target.name]: event.target.value,
     }));
   };
@@ -83,20 +82,10 @@ export const Forms = () => {
 
           <Label for="exampleSelect">Tipo de operación</Label>
           <Input className="form-control" type="select" name="revenue" id="floatingInput" onChange={handleChange}>
-            <option>1</option>
-            <option>2</option>
+            <option value='1'>Ingreso</option>
+            <option value='2'>Egreso</option>
           </Input>
           <br />
-
-
-
-
-
-
-
-
-
-
           <input className="btn btn-primary" type="submit" value="enviar" onChange={handleChange} />
         </form>
       </div>
@@ -104,6 +93,6 @@ export const Forms = () => {
   );
 }
 
-export default Forms;
+export default CreateTransaction;
 
 

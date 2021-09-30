@@ -2,6 +2,8 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css'
 import { Nav, Navbar, Button, Container } from 'react-bootstrap';
+import { Link } from "react-router-dom";
+import CreateTransaction from '../Forms/CreateTransaction'
 
 export const Balance = ({item}) => {
    
@@ -35,11 +37,13 @@ export const Balance = ({item}) => {
  <Navbar bg="dark" variant="dark">
     <Container>
     <Navbar.Brand href="#home">Balance actual: ${total}</Navbar.Brand>
-    <Button variant="primary">Crear registro</Button>
+    <Link to='/create'><Button variant="primary">Crear registro</Button></Link>
     </Container>
   </Navbar>
 </>
 
+
+// Boton para react 
         
         // <div>
         //     <div className= "cont_balance">

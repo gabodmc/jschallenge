@@ -35,7 +35,7 @@ class OutcomeList extends Component {
             <React.Fragment>
                 <div className="card shadow mb-4">
                     <div className="card-body">
-                        <h3>Egresos</h3>
+                        <h4>Egresos</h4>
                         <div className="table-responsive">
                             <table className="table table-bordered" id="dataTable" width="100%" cellSpacing="0">
                                 <thead>

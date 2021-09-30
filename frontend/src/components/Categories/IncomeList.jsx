@@ -35,7 +35,7 @@ class IncomeList extends Component {
             <React.Fragment>
                 <div className="card shadow mb-4">
                     <div className="card-body">
-                        <h3>Ingresos</h3>
+                        <h4>Ingresos</h4>
                         <div className="table-responsive">
                             <table className="table table-bordered" id="dataTable" width="100%" cellSpacing="0">
                                 <thead>

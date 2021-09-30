@@ -1,8 +1,13 @@
 
 import './App.css';
-
-import Forms from './components/Forms';
-import { Home } from './components/Home';
+import Home from './components/Home';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+import CreateForm from './components/Forms/CreateTransaction'
 
 
 
@@ -10,13 +15,18 @@ import { Home } from './components/Home';
 function App() {
   return (
     <div className="App">
-
-<Home />
-{/* <Forms/> */}
-
-
-
-
+            <Router>
+                <Switch>
+                    <Route path='/' exact>
+                        <Home />
+                    </Route>
+                </Switch>
+                <Switch>
+                    <Route path='/create'>
+                        <CreateForm />
+                    </Route>
+                </Switch>
+            </Router>
     
     </div>
   );
