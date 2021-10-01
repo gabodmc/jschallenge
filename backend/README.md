@@ -1,4 +1,4 @@
-# Bienvenido al back en API Rest
+# Bienvenido al back
 
 Recorda instalar las dependencias con **npm i** o **npm install**
 
