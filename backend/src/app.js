@@ -4,7 +4,7 @@ const cors = require('cors')
 
 const app = express();
 const path = require('path');
-const port = process.env.PORT;
+const port = process.env.PORT || 3001;
 
 const apiTransactionRouter = require('./routes/api/apiTransactionRouter');
 
@@ -19,6 +19,6 @@ app.use('/api/movements', apiTransactionRouter);
 app.use ((req, res, next) => {
     res.status(404).render('404')
 });
-app.listen (port || 3001, () => {
-    console.log('Servidor levantado en el puerto 3001');
+app.listen (port, () => {
+    console.log(`Servidor funcionando en el puerto ${port}`);
 });

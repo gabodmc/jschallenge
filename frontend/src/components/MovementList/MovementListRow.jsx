@@ -15,7 +15,7 @@ function MovementListRow(props) {
                 <td>{props.concept}</td>
                 <td>${props.amount}</td>
                 <td>{ManageDate(props.date)}</td>
-                <td>{props.revenue == 1 ? 'Ingreso' : 'Egreso'}</td>
+                <td>{props.revenue === 1 ? 'Ingreso' : 'Egreso'}</td>
                 <td>
                     <Link to={`/edit/${props.id}`}>Edit</Link>
                 </td>

@@ -12,6 +12,7 @@ const apiTransactionController = {
             .then(movements => {
                 return res.status(200).json({
                     total: movements.length,
+                    revenue_types: { "1": "income", "2": "outcome" },
                     transactions: movements,
                     status: 200
                 })
@@ -55,15 +56,14 @@ const apiTransactionController = {
 
     update: (req, res) => {
         let updatedTransaction = req.body
-    
+
         Transaction.update(updatedTransaction,
             {
                 where: {
                     id: req.params.id
                 }
-            }).then((result) => res.redirect('/transactions/' + req.params.id))
-    
-},
+            }).then((result) => res.json(result));
+    },
 
     delete: (req, res) => {
         Transaction.destroy({
@@ -77,10 +77,10 @@ const apiTransactionController = {
     },
 
     search: (req, res) => {
+        const query = req.query;            
+        const conceptKeyword = query.concept ? query.concept: '';
         Transaction.findAll({
-            where: {
-                id: { [Op.like]: '%' + req.query.keyword + '%' }
-            }
+            where: { concept: { [Op.substring]: conceptKeyword }} 
         })
             .then(transactions => {
                 if (transactions.length > 0) {

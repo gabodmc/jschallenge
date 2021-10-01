@@ -8,21 +8,25 @@ module.exports = {
         revenue: 1,
         concept: 'Alimento',
         amount: 500,
+        date: '2021-09-30'
       },
       { id:2,
         revenue: 1,
         concept: 'Transporte',
         amount: 1500,
+        date: '2021-09-30'
       },
       { id:3,
         revenue: 2,
         concept: 'Varios',
         amount: 300,
+        date: '2021-09-30'
       },
       { id:4,
         revenue: 2,
         concept: 'Viaticos',
         amount: 200,
+        date: '2021-09-30'
       },
     
     ]);

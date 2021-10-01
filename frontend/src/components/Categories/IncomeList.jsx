@@ -15,8 +15,6 @@ class IncomeList extends Component {
         fetch('http://localhost:3001/api/movements')
             .then(respuesta => {
                 return respuesta.json()
-                console.log("Respuesta" + respuesta)
-
             })
             .then(data => {
                 this.setState({
@@ -25,10 +23,6 @@ class IncomeList extends Component {
             })
             .catch(error => console.log(error))
     }
-
-
-
-
 
     render() {
         return (

@@ -18,13 +18,11 @@ class MovementList extends Component {
             })
             .then(data => {
                 this.setState({
-                    movementList: data.transactions.slice(data.length, 10)
+                    movementList: data.transactions.reverse().slice(data.length, 10)
                 })
             })
             .catch(error => console.log(error))
     }
-
-
 
     render() {
         return (
