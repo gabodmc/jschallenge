@@ -8,10 +8,10 @@ La DB fue creada con sequelize. Para que la misma funcione, debern ser ejecutado
 
 - **1** sequelize db:create
 - **2** sequelize db:migrate
-- **3 (opcional si queres cargar datos)** sequelize db:seed:all
+- **3 (opcional si queres cargar datos en la db)** sequelize db:seed:all
 
 # Rutas API disponibles:
 
-[Consulta de movimientos](https://localhost:3001/api/movements/)
-[Consulta por concepto](http://localhost:3001/api/search?concept=)
-[Consulta por id](http://localhost:3001/api/id)
+- [Consulta de movimientos](https://localhost:3001/api/movements/)
+- [Consulta por concepto](http://localhost:3001/api/search?concept=)
+- [Consulta por id](http://localhost:3001/api/id)
