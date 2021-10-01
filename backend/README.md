@@ -6,9 +6,9 @@ Recorda instalar las dependencias con **npm i** o **npm install**
 
 La DB fue creada con sequelize. Para que la misma funcione, debern ser ejecutados los siguientes comandos. Respetar el orden para evitar inconvenientes
 
-**1** sequelize db:create
-**2** sequelize db:migrate
-**3 (opcional si queres cargar datos)** sequelize db:seed:all
+- **1** sequelize db:create
+- **2** sequelize db:migrate
+- **3 (opcional si queres cargar datos)** sequelize db:seed:all
 
 # Rutas API disponibles:
 
