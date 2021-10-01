@@ -1,5 +1,4 @@
 const express = require('express');
-const methodOverride = require ('method-override')
 const cors = require('cors')
 
 const app = express();

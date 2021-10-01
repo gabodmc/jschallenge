@@ -7,7 +7,6 @@ import {
   Link
 } from "react-router-dom";
 import { useEffect, useState } from 'react'
-import axios from 'axios'
 import CreateForm from './components/Forms/CreateTransaction'
 import EditForm from './components/Forms/EditTransaction'
 
