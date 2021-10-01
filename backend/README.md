@@ -3,6 +3,16 @@
 Creado en express y patron API Rest. 
 Recorda instalar las dependencias con **npm i** o **npm install**
 
+# Configurar el archivo .ENV antes de ejecutar los comandos de Sequelize ⌨
+
+DB_USERNAME=Nombre de usuario para la DB
+DB_PASSWORD=
+DB_HOST=Ip local o Localhost
+DB_DATABASE=El nombre que quieras para la DB
+DB_PORT=Puerto de conexion
+DB_DIALECT=mysql
+
+
 # Sequelize ⌨
 
 La DB fue creada con sequelize. Para que la misma funcione, debern ser ejecutados los siguientes comandos. Respetar el orden para evitar inconvenientes
