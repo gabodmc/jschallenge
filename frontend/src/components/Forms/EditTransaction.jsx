@@ -44,7 +44,7 @@ const EditTransaction = ({ movements }) => {
     };
 
     let inputErrors = () => {
-        formValues.concept === '' && formValues.amount === null ? alert('Faltan datos para realizar la operación') : alert('Operación realizada')
+        formValues.concept === '' || formValues.amount === null ? alert('Faltan datos para realizar la operación') : alert('Operación realizada')
     }
 
 
