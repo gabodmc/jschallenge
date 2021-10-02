@@ -1,4 +1,4 @@
-const { body } = require('express-validator');
+const { body, params } = require('express-validator');
 
 
 const validateTransaction = [
@@ -22,9 +22,6 @@ const editTransaction = [
     body('amount')
         .notEmpty().withMessage('El campo de monto es obligatorio')
         .bail().isNumeric().withMessage('El monto debe ser numérico'),
-    body('date')
-        .notEmpty().withMessage('El campo de fecha es obligatorio')
-        .bail().isDate().withMessage('El campo debe ser en formato fecha'),
 ];
 
 

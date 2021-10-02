@@ -56,13 +56,13 @@ const apiTransactionController = {
                             created: "ok"
                         })
                     })
-            } catch (error){
+            } catch (error) {
                 res.json(error);
             }
-        
-    } else {
-        res.json({errors:errors.mapped()})
-    }
+
+        } else {
+            res.json({ errors: errors.mapped() })
+        }
     },
 
     update: (req, res) => {
@@ -70,17 +70,21 @@ const apiTransactionController = {
         let errors = validationResult(req);
         if (errors.isEmpty()) {
             try {
-        Transaction.update(updatedTransaction,
-            {
-                where: {
-                    id: req.params.id
-                }
-            }).then((result) => res.json(result));
-        } catch (error){
-            res.json(error)
+                Transaction.update(updatedTransaction,
+                    {
+                        where: {
+                            id: req.params.id
+                        }
+                    })
+                    .then((result) => res.json(result))
+            } catch (error) {
+                res.json(error);
+            }
+
+        } else {
+            res.json({ errors: errors.mapped() })
         }
-            
-    }},
+    },
 
     delete: (req, res) => {
         Transaction.destroy({
