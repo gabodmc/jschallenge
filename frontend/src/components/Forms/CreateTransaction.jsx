@@ -42,7 +42,7 @@ export const CreateTransaction = () => {
   };
 
   let inputErrors = () => {
-    inputs.concept === '' && inputs.amount === null ? alert('Faltan datos para realizar la operación') : alert('Operación realizada')
+    inputs.concept === '' && inputs.amount === null ? alert('Faltan datos para realizar la operación') : alert('Confirma operación?')
 }
 
   const handleSubmit = (event) => {
