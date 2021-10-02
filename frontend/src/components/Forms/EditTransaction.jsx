@@ -43,9 +43,14 @@ const EditTransaction = ({ movements }) => {
         setFormValues({ ...formValues, [e.target.name]: e.target.value })
     };
 
+    let inputErrors = () => {
+        formValues.concept === '' && formValues.amount === null ? alert('Faltan datos para realizar la operación') : alert('Operación realizada')
+    }
+
+
     let handleDeleteButton = event => {
         event.preventDefault();
-        alert("Transacción eliminada")
+        inputErrors();
         deletePost();
         history.push('/');
     };
@@ -53,7 +58,7 @@ const EditTransaction = ({ movements }) => {
 
     let handleSubmit = event => {
         event.preventDefault()
-        alert("Confirmar cambio")
+        inputErrors();
         editPost();
         history.push('/');
     };
