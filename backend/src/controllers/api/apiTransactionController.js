@@ -1,5 +1,6 @@
 const { Transaction } = require('../../database/models');
 const { Op } = require("sequelize");
+const { validationResult } = require('express-validator');
 
 const apiTransactionController = {
     list: (req, res) => {
@@ -44,14 +45,24 @@ const apiTransactionController = {
     },
 
     create: (req, res) => {
-        Transaction.create(req.body)
-            .then(transactions => {
-                return res.status(200).json({
-                    data: transactions,
-                    status: 200,
-                    created: "ok"
-                })
-            })
+        let errors = validationResult(req);
+        if (errors.isEmpty()) {
+            try {
+                Transaction.create(req.body)
+                    .then(transactions => {
+                        return res.status(200).json({
+                            data: transactions,
+                            status: 200,
+                            created: "ok"
+                        })
+                    })
+            } catch (error){
+                res.json(error);
+            }
+        
+    } else {
+        console.log({errors:errors.mapped()})
+    }
     },
 
     update: (req, res) => {
@@ -77,10 +88,10 @@ const apiTransactionController = {
     },
 
     search: (req, res) => {
-        const query = req.query;            
-        const conceptKeyword = query.concept ? query.concept: '';
+        const query = req.query;
+        const conceptKeyword = query.concept ? query.concept : '';
         Transaction.findAll({
-            where: { concept: { [Op.substring]: conceptKeyword }} 
+            where: { concept: { [Op.substring]: conceptKeyword } }
         })
             .then(transactions => {
                 if (transactions.length > 0) {
