@@ -3,16 +3,18 @@ import { Label, Input, } from 'reactstrap';
 import { Form, Button } from 'react-bootstrap'
 import {
   BrowserRouter as Router,
-  Switch,
+  withRouter,
   Route,
   Link,
-  useParams
+  useParams,
+  useHistory
 } from "react-router-dom";
 
 
 export const CreateTransaction = () => {
 
   const [inputs, setInputs] = useState({});
+  const history = useHistory();
 
   const apiPost = async () => {
     await fetch("http://localhost:3001/api/movements/", {
@@ -39,10 +41,13 @@ export const CreateTransaction = () => {
     }));
   };
 
+
+
   const handleSubmit = (event) => {
     event.preventDefault();
     alert("Transacción creada")
     apiPost();
+    history.push('/');
   };
 
   return (
@@ -96,6 +101,6 @@ export const CreateTransaction = () => {
   );
 }
 
-export default CreateTransaction;
+export default withRouter (CreateTransaction);
 
 

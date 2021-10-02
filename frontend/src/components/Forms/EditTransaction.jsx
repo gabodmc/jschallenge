@@ -1,9 +1,10 @@
 import { useState } from 'react'
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, withRouter, useHistory } from "react-router-dom";
 import { FloatingLabel, Button } from 'react-bootstrap'
 
 const EditTransaction = ({ movements }) => {
     const { id } = useParams()
+    const history = useHistory();
 
     let [formValues, setFormValues] = useState({
         concept: "",
@@ -34,27 +35,28 @@ const EditTransaction = ({ movements }) => {
             },
         })
             .then((response) => response.json())
-            .then((json) => console.log(json));
+            .then((json) => console.log(json))
+    };
+
+    const handleInputChange = (e) => {
+        e.preventDefault()
+        setFormValues({ ...formValues, [e.target.name]: e.target.value })
     };
 
     let handleDeleteButton = event => {
         event.preventDefault();
         alert("Transacción eliminada")
-        deletePost()
-    }
+        deletePost();
+        history.push('/');
+    };
 
 
     let handleSubmit = event => {
         event.preventDefault()
-        alert("Transacción actualizada")
+        alert("Confirmar cambio")
         editPost();
-    }
-
-
-    const handleInputChange = (e) => {
-        e.preventDefault()
-        setFormValues({ ...formValues, [e.target.name]: e.target.value })
-    }
+        history.push('/');
+    };
 
     return (
         <>
@@ -65,17 +67,17 @@ const EditTransaction = ({ movements }) => {
                             <div className="grid grid-cols-6 gap-6">
                                 <h3>Formulario de edición</h3>
                                 <div className="col-span-6 sm:col-span-4">
-                                    <FloatingLabel for="concept" className="block text-sm font-medium text-gray-700">Concepto</FloatingLabel>
+                                    <FloatingLabel for="floatingInput" className="block text-sm font-medium text-gray-700">Concepto</FloatingLabel>
                                     <input onChange={handleInputChange} type="text" name="concept" id="concept" placeholder={`${movement.concept}`} />
                                 </div>
 
                                 <div className="col-span-6 sm:col-span-4">
-                                    <FloatingLabel for="concept" className="block text-sm font-medium text-gray-700">Monto</FloatingLabel>
+                                    <FloatingLabel for="floatingInput" className="block text-sm font-medium text-gray-700">Monto</FloatingLabel>
                                     <input onChange={handleInputChange} type="number" name="amount" id="amount" placeholder={`${movement.amount}`} />
                                 </div>
 
                                 <div className="col-span-6 sm:col-span-4">
-                                    <FloatingLabel for="concept" className="block text-sm font-medium text-gray-700">Fecha</FloatingLabel>
+                                    <FloatingLabel for="floatingInput" className="block text-sm font-medium text-gray-700">Fecha</FloatingLabel>
                                     <input onChange={handleInputChange} type="date" name="date" id="date" placeholder={`${movement.concept}`} />
                                 </div>
                             </div>
@@ -92,4 +94,4 @@ const EditTransaction = ({ movements }) => {
     )
 }
 
-export default EditTransaction;
+export default withRouter (EditTransaction);
