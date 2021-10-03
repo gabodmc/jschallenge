@@ -55,7 +55,7 @@ const apiTransactionController = {
                             status: 200,
                             created: "ok"
                         })
-                    })
+                    }).then
             } catch (error) {
                 res.json(error);
             }
