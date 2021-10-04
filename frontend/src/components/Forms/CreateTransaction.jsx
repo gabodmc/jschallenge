@@ -42,7 +42,7 @@ export const CreateTransaction = () => {
   };
 
   let inputErrors = () => {
-    inputs.concept === '' && inputs.amount === null ? alert('Faltan datos para realizar la operación') : alert('Confirma operación?')
+    inputs.concept === '' || inputs.amount === null ? alert('Faltan datos para realizar la operación') : alert('Confirma operación?')
 }
 
   const handleSubmit = (event) => {
@@ -74,6 +74,7 @@ export const CreateTransaction = () => {
                 className="form-control" id="floatingInput"
                 type="number"
                 name="amount"
+                max="9999999"
                 placeholder="amount"
                 onChange={handleChange}
               />

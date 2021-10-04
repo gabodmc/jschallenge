@@ -47,10 +47,10 @@ class OutcomeList extends Component {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {
+                                    { this.state.movementList.length ?
                                         this.state.movementList.map((product, index) => {
                                             return <IncomeListRow {...product} key={index} />
-                                        })
+                                        }) : <p>Cargando movimientos... </p>
                                     }
 
                                 </tbody>
