@@ -17,12 +17,8 @@ const validateTransaction = [
 ];
 
 const editTransaction = [
-    body('concept')
-        .notEmpty().withMessage('Recordá ingresar concepto').bail()
-        .isLength({ min: 2 }).withMessage('El concepto debe tener mas de dos caracteres'),
     body('amount')
-        .notEmpty().withMessage('El campo de monto es obligatorio')
-        .bail().isNumeric().withMessage('El monto debe ser numérico'),
+        .isFloat({max : 9000000}).withMessage('El valor máximo es 9 millones'),
 ];
 
 

@@ -52,16 +52,13 @@ const apiTransactionController = {
                     .then(transactions => {
                         return res.status(200).json({
                             data: transactions,
-                            status: 200,
                             created: "ok"
                         })
-                    }).then
+                    })
             } catch (error) {
                 res.json(error);
-            }
-
-        } else {
-            res.json({ errors: errors.mapped() })
+            }} else {
+            res.status(400).json({ errors: errors.mapped() })
         }
     },
 
@@ -76,13 +73,11 @@ const apiTransactionController = {
                             id: req.params.id
                         }
                     })
-                    .then((result) => res.json(result))
+                    .then((result) => res.status(200).json(result))
             } catch (error) {
                 res.json(error);
-            }
-
-        } else {
-            res.json({ errors: errors.mapped() })
+            }} else {
+            res.status(400).json({ errors: errors.mapped() })
         }
     },
 
@@ -93,7 +88,7 @@ const apiTransactionController = {
             }
         })
             .then(response => {
-                return res.json(response)
+                return res.status(200).json(response)
             })
     },
 
@@ -107,7 +102,7 @@ const apiTransactionController = {
                 if (transactions.length > 0) {
                     return res.status(200).json(transactions);
                 }
-                return res.status(200).json("No hay registros con ese concepto")
+                return res.status(204).json("No hay registros con ese concepto")
 
             })
     },
