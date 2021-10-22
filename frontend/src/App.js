@@ -13,28 +13,28 @@ import EditForm from './components/Forms/EditTransaction'
 
 
 const App = ()  => {
-  const [item, setItem] = useState([])
+
+  const [items, setItems] = useState([]);
+  const [balance, setBalance] =useState([]);
 
   useEffect(() => {
-      data()
-  }, [])
-
-  const data = async () => {
-      await fetch('http://localhost:3001/api/movements/')
-          .then(response => response.json())
-          .then(receivedData => setItem(receivedData.transactions))
-  };
-
+    fetch("http://localhost:3001/api/movements/")
+      .then((res) => res.json())
+      .then((result) => {
+        setItems(result.transactions.reverse().slice(result.length, 10));
+        setBalance(result.balance)
+      });
+  }, []);
 
   return (
     <div className="App">
             <Router>
                 <Switch>
                     <Route path='/' exact>
-                        <Home />
+                        <Home balance={balance} items={items} />
                     </Route>
                     <Route path="/edit/:id">
-                    <EditForm movements={item} />
+                    <EditForm movements={items} />
                     </Route>
                     <Route path='/create'>
                         <CreateForm />

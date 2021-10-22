@@ -25,9 +25,9 @@ const EditTransaction = ({ movements }) => {
         await fetch(`http://localhost:3001/api/movements/${id}`, {
             method: "PUT",
             body: JSON.stringify({
-                concept: formValues.concept == '' ? movements.concept : formValues.concept,
-                amount: formValues.amount == '' ? movements.amount : formValues.amount,
-                date: formValues.date == '' ? movements.date : formValues.date,
+                concept: formValues.concept === '' ? movements.concept : formValues.concept,
+                amount: formValues.amount === '' ? movements.amount : formValues.amount,
+                date: formValues.date === '' ? movements.date : formValues.date,
                 revenue: movements.revenue
             }),
             headers: {
@@ -65,7 +65,7 @@ const EditTransaction = ({ movements }) => {
 
     return (
         <>
-            {movements.filter(movement => movement.id == id).map((movement) =>
+            {movements.filter(movement => movement.id === id).map((movement) =>
                 <form onSubmit={handleSubmit}>
                     <div className="shadow overflow-hidden sm:rounded-md">
                         <div className="px-4 py-5 bg-white sm:p-6">
