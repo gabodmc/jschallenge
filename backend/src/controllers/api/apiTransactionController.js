@@ -11,8 +11,19 @@ const apiTransactionController = {
 
         )
             .then(movements => {
+                //Resuelvo el balance en el back
+                const outcomeValue = [];
+                const incomeValue = [];
+                movements.forEach(function (movements) {
+                    movements.revenue === 2 ? outcomeValue.push(movements.amount) : incomeValue.push(movements.amount)
+                });
+                const spendingTotal = outcomeValue.reduce((a, b) => a + b, 0);
+                const incomeTotal = incomeValue.reduce((a, b) => a + b, 0);
+                const balanceTotal = incomeTotal - spendingTotal
+
                 return res.status(200).json({
                     total: movements.length,
+                    balance: balanceTotal,
                     revenue_types: { "1": "income", "2": "outcome" },
                     transactions: movements,
                     status: 200
@@ -57,7 +68,8 @@ const apiTransactionController = {
                     })
             } catch (error) {
                 res.json(error);
-            }} else {
+            }
+        } else {
             res.status(400).json({ errors: errors.mapped() })
         }
     },
@@ -76,7 +88,8 @@ const apiTransactionController = {
                     .then((result) => res.status(200).json(result))
             } catch (error) {
                 res.json(error);
-            }} else {
+            }
+        } else {
             res.status(400).json({ errors: errors.mapped() })
         }
     },
