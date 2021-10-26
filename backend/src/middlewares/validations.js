@@ -8,7 +8,7 @@ const validateTransaction = [
     body('amount')
         .notEmpty().withMessage('El campo de monto es obligatorio')
         .bail().isNumeric().withMessage('El monto debe ser numérico')
-        .bail().isFloat({max : 9999999}),
+        .bail().isFloat({max : 9000000}),
     body('date')
         .notEmpty().withMessage('El campo de fecha es obligatorio')
         .bail().isDate().withMessage('El campo debe ser en formato fecha'),
@@ -20,8 +20,6 @@ const editTransaction = [
     body('amount')
         .isFloat({max : 9000000}).withMessage('El valor máximo es 9 millones'),
 ];
-
-
 
 
 module.exports = { validateTransaction, editTransaction }
