@@ -1,7 +1,7 @@
 import React from "react";
 import { Formik } from "formik";
 import { Link } from "react-router-dom";
-import TransactionSchema from "./TransactionSchema";
+import {CreateSchema} from "./TransactionSchema";
 
 const FormikForm = () => {
   return (
@@ -9,7 +9,7 @@ const FormikForm = () => {
       <h1>Transaction Form</h1>
       <Formik
         initialValues={{ concept: "", amount: "", revenue: "", date: "" }}
-        validationSchema={TransactionSchema}
+        validationSchema={CreateSchema}
         onSubmit={(values, { setSubmitting }) => {
           setTimeout(() => {
             fetch("http://localhost:3001/api/movements/", {
@@ -117,9 +117,6 @@ const FormikForm = () => {
                             value={values.revenue}
                             className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                           >
-                            <option value="" disabled selected>
-                              - Seleccione una categoria -{" "}
-                            </option>
                             <option value="1">Ingreso</option>
                             <option value="2">Egreso</option>
                           </select>

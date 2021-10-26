@@ -3,7 +3,7 @@ import Home from "./components/Home";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { useEffect, useState } from "react";
 import CreateForm from "./components/Forms/CreateForm";
-import EditForm from "./components/Forms/EditTransaction";
+import EditForm from './components/Forms/EditForm'
 
 const App = () => {
   const [items, setItems] = useState([]);
@@ -28,7 +28,7 @@ const App = () => {
             <Home balance={balance} items={items} />
           </Route>
           <Route path="/edit/:id">
-            <EditForm movements={items} />
+            <EditForm movements={items}  />
           </Route>
           <Route path="/create">
             <CreateForm />
