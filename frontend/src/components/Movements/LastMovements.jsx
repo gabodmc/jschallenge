@@ -1,17 +1,8 @@
 import React from "react";
+import LastMovementsRow from "./LastMovementRow";
+import Loading from "../../assets/loading.gif";
 
 const LastMovements = ({ movements }) => {
-
-    const ManageDate = (date) => {
-        let dateObj = new Date(date);
-        let month = dateObj.getUTCMonth() + 1
-        let day = dateObj.getUTCDate();
-        let year = dateObj.getUTCFullYear();
-    
-        let newdate = day + "/" + month + "/" + year;
-        return newdate;
-    }
-
   return (
     <>
       <div className="flex flex-col">
@@ -56,43 +47,25 @@ const LastMovements = ({ movements }) => {
                     </th>
                   </tr>
                 </thead>
-                <tbody className="bg-white divide-y divide-gray-200">
-                  {movements.map((transaction, index) => (
-                    <tr key={index}>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        {transaction.id}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        {transaction.concept}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        {transaction.revenue === 1 ? (
-                          <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-black-800">
-                            Ingreso
-                          </span>
-                        ) : (
-                          <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-black-800">
-                            Egreso
-                          </span>
-                        )}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        {ManageDate(transaction.date)}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        {transaction.amount}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                        <a
-                          href={`/edit/${transaction.id}`}
-                          className="text-indigo-600 hover:text-indigo-900"
-                        >
-                          Edit
-                        </a>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
+
+                {movements.length ? (
+                  movements.map((transaction, index) => (
+                    <tbody
+                      key={index}
+                      className="bg-white divide-y divide-gray-200"
+                    >
+                      <LastMovementsRow transaction={transaction} />
+                    </tbody>
+                  ))
+                ) : (
+                  <img
+                    alt="loading"
+                    src={Loading}
+                    width="60"
+                    height="30"
+                    className="d-inline-block align-center"
+                  />
+                )}
               </table>
             </div>
           </div>

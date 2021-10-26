@@ -1,8 +1,9 @@
 /* This example requires Tailwind CSS v2.0+ */
-import { Fragment } from 'react'
-import LastMovements from './Movements/LastMovements'
-import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
+import { Fragment } from 'react';
+import LastMovements from './Movements/LastMovements';
+import { Disclosure, Menu, Transition } from '@headlessui/react';
+import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline';
+import Loading from "../assets/loading.gif";
 
 const user = {
   name: 'Tom Cook',
@@ -184,7 +185,16 @@ export default function Home({balance, items}) {
         </Disclosure>
         <header className="bg-white shadow">
           <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-            <h1 className="text-3xl font-bold text-gray-900">{balance > 0 ? <p>Balanace: ${balance}</p> : 0}</h1>
+            <h1 className="text-3xl font-bold text-gray-900">{balance > 0 ? <p>Balanace: ${balance}</p> :                   <div className="loading">
+                    <img
+                      alt=""
+                      src={Loading}
+                      width="100  "
+                      height="60"
+                      className="d-inline-block align-center"
+                    />{" "}
+                    Obteniendo balance
+                  </div>}</h1>
           </div>
         </header>
         <main>
