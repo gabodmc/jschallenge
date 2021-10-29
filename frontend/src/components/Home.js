@@ -2,23 +2,23 @@
 import { useEffect, useState } from "react";
 import { Fragment } from "react";
 import MovementsContainer from "./Movements/MovementsContainer";
-import { Disclosure } from "@headlessui/react";
-// import { BellIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
+import { Disclosure, Menu, Transition } from "@headlessui/react";
+import { BellIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import EditForm from "./Forms/EditForm";
 import CreateForm from "./Forms/CreateForm";
 
-// const user = {
-//   name: "Tom Cook",
-//   email: "tom@example.com",
-//   imageUrl:
-//     "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-// };
+const user = {
+  name: "Tom Cook",
+  email: "tom@example.com",
+  imageUrl:
+    "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+};
 const navigation = [
   { name: "Inicio", href: "/", current: true },
   { name: "Crear transacción", href: "/create", current: false },
 ];
-// const userNavigation = [{ name: "Sign out", href: "#" }];
+const userNavigation = [{ name: "Sign out", href: "#" }];
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -105,7 +105,7 @@ export default function Home() {
 
 
                         {/* Profile dropdown */}
-                        {/* <Menu as="div" className="ml-3 relative">
+                        <Menu as="div" className="ml-3 relative">
                           <div>
                             <Menu.Button className="max-w-xs bg-gray-800 rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
                               <span className="sr-only">Open user menu</span>
@@ -143,12 +143,12 @@ export default function Home() {
                               ))}
                             </Menu.Items>
                           </Transition>
-                        </Menu> */}
+                        </Menu> 
                       </div>
                     </div>
                     <div className="-mr-2 flex md:hidden">
                       {/* Mobile menu button */}
-                      {/* <Disclosure.Button className="bg-gray-800 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+                       <Disclosure.Button className="bg-gray-800 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
                         <span className="sr-only">Open main menu</span>
                         {open ? (
                           <XIcon className="block h-6 w-6" aria-hidden="true" />
@@ -158,12 +158,12 @@ export default function Home() {
                             aria-hidden="true"
                           />
                         )}
-                      </Disclosure.Button> */}
+                      </Disclosure.Button> 
                     </div>
                   </div>
                 </div>
 
-                {/* <Disclosure.Panel className="md:hidden">
+                <Disclosure.Panel className="md:hidden">
                   <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                     {navigation.map((item) => (
                       <Disclosure.Button
@@ -220,7 +220,7 @@ export default function Home() {
                       ))}
                     </div>
                   </div>
-                </Disclosure.Panel> */}
+                </Disclosure.Panel> 
               </>
             )}
           </Disclosure>
