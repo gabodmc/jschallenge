@@ -1,16 +1,14 @@
 import React from "react";
 import { Formik } from "formik";
-import { Link } from "react-router-dom";
-import {CreateSchema} from "./TransactionSchema";
+import { CreateSchema } from "./TransactionSchema";
 
 const FormikForm = () => {
   return (
     <>
-      <h1>Transaction Form</h1>
       <Formik
         initialValues={{ concept: "", amount: "", revenue: "", date: "" }}
         validationSchema={CreateSchema}
-        onSubmit={(values, { setSubmitting }) => {
+        onSubmit={(values, { setSubmitting, resetForm }) => {
           setTimeout(() => {
             fetch("http://localhost:3001/api/movements/", {
               method: "POST",
@@ -27,8 +25,10 @@ const FormikForm = () => {
               .then((response) => response.json())
               .then((json) => console.log(json));
             setSubmitting(false);
-            alert("Trasacción creada");
           }, 1000);
+          setTimeout(() => {
+            resetForm();
+          }, 2000);
         }}
       >
         {({
@@ -45,6 +45,13 @@ const FormikForm = () => {
               <div className="mt-5 md:mt-0 md:col-span-2">
                 <form onSubmit={handleSubmit}>
                   <div className="shadow overflow-hidden sm:rounded-md">
+                    <br />
+                    <h3
+                      className="block text-lg font-medium text-gray-700"
+                      style={{ textAlign: "center" }}
+                    >
+                      Crear transacción
+                    </h3>
                     <div className="px-4 py-5 bg-white sm:p-6">
                       <div className="grid grid-cols-6 gap-6">
                         <div className="col-span-6 sm:col-span-3">
@@ -62,7 +69,11 @@ const FormikForm = () => {
                             onBlur={handleBlur}
                             value={values.concept}
                           />
-                          {errors.concept && touched.concept && errors.concept}
+                          <p className="text-red-500">
+                            {errors.concept &&
+                              touched.concept &&
+                              errors.concept}
+                          </p>
                         </div>
                         <div className="col-span-6 sm:col-span-3">
                           <label
@@ -72,14 +83,16 @@ const FormikForm = () => {
                             Monto
                           </label>
                           <input
-                            type="number"
+                            type="text"
                             name="amount"
                             className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                             onChange={handleChange}
                             onBlur={handleBlur}
                             value={values.amount}
                           />
-                          {errors.amount && touched.amount && errors.amount}
+                          <p className="text-red-500">
+                            {errors.amount && touched.amount && errors.amount}
+                          </p>
                         </div>
 
                         <div className="col-span-6 sm:col-span-4">
@@ -98,7 +111,9 @@ const FormikForm = () => {
                             value={values.date}
                             className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                           />
-                          {errors.date && touched.date && errors.date}
+                          <p className="text-red-500">
+                            {errors.date && touched.date && errors.date}
+                          </p>
                         </div>
                         <div className="col-span-6 sm:col-span-3">
                           <label
@@ -117,10 +132,17 @@ const FormikForm = () => {
                             value={values.revenue}
                             className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                           >
+                            <option value="" disabled selected>
+                              - Seleccione una categoria -{" "}
+                            </option>
                             <option value="1">Ingreso</option>
                             <option value="2">Egreso</option>
                           </select>
-                          {errors.revenue && touched.revenue && errors.revenue}
+                          <p className="text-red-500">
+                            {errors.revenue &&
+                              touched.revenue &&
+                              errors.revenue}
+                          </p>
                         </div>
                       </div>
                     </div>
@@ -132,11 +154,6 @@ const FormikForm = () => {
                       >
                         {isSubmitting ? "Enviando" : "Enviar"}
                       </button>
-                      <Link to="/">
-                        <button className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
-                          Volver
-                        </button>
-                      </Link>
                     </div>
                   </div>
                 </form>

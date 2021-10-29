@@ -1,11 +1,10 @@
 import React from "react";
 import { Formik } from "formik";
-import { Link, useParams, useHistory } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { EditSchema } from "./TransactionSchema";
 
 const EditForm = ({ movements }) => {
   const { id } = useParams();
-  const history = useHistory();
 
   const ManageDate = (date) => {
     let dateObj = new Date(date);
@@ -19,21 +18,19 @@ const EditForm = ({ movements }) => {
   const deleteMovement = async () => {
     await fetch(`http://localhost:3001/api/movements/${id}`, {
       method: "DELETE",
-    })
-      .then((response) => response.json())
+    }).then((response) => response.json());
   };
 
   let handleDeleteButton = (event) => {
-    event.preventDefault()
-    deleteMovement()
-    alert("Transacción eliminada")
-    history.push('/')
+    event.preventDefault();
+    deleteMovement();
+    alert("Transacción eliminada");
   };
 
   return (
     <>
-      <h1>Transaction Form</h1>
       {movements
+        // eslint-disable-next-line eqeqeq
         .filter((movements) => movements.id == id)
         .map((movements, index) => (
           <Formik
@@ -88,6 +85,12 @@ const EditForm = ({ movements }) => {
                   <div className="mt-5 md:mt-0 md:col-span-2">
                     <form onSubmit={handleSubmit}>
                       <div className="shadow overflow-hidden sm:rounded-md">
+                        <h3
+                          className="block text-lg font-medium text-gray-700"
+                          style={{ textAlign: "center" }}
+                        >
+                          Editar movimiento
+                        </h3>
                         <div className="px-4 py-5 bg-white sm:p-6">
                           <div className="grid grid-cols-6 gap-6">
                             <div className="col-span-6 sm:col-span-3">
@@ -105,9 +108,11 @@ const EditForm = ({ movements }) => {
                                 onBlur={handleBlur}
                                 value={values.concept}
                               />
-                              {errors.concept &&
-                                touched.concept &&
-                                errors.concept}
+                              <p className="text-red-500">
+                                {errors.concept &&
+                                  touched.concept &&
+                                  errors.concept}
+                              </p>
                             </div>
                             <div className="col-span-6 sm:col-span-3">
                               <label
@@ -117,14 +122,18 @@ const EditForm = ({ movements }) => {
                                 Monto
                               </label>
                               <input
-                                type="number"
+                                type="text"
                                 name="amount"
                                 className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                 onChange={handleChange}
                                 onBlur={handleBlur}
                                 value={values.amount}
                               />
-                              {errors.amount && touched.amount && errors.amount}
+                              <p className="text-red-500">
+                                {errors.amount &&
+                                  touched.amount &&
+                                  errors.amount}
+                              </p>
                             </div>
 
                             <div className="col-span-6 sm:col-span-3">
@@ -135,7 +144,6 @@ const EditForm = ({ movements }) => {
                                 Fecha actual
                               </label>
                               <p>{ManageDate(values.oldDate)}</p>
-                              {errors.amount && touched.amount && errors.amount}
                             </div>
 
                             <div className="col-span-6 sm:col-span-4">
@@ -171,11 +179,6 @@ const EditForm = ({ movements }) => {
                           >
                             Borrar
                           </button>
-                          <Link to="/">
-                            <button className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
-                              Volver
-                            </button>
-                          </Link>
                         </div>
                       </div>
                     </form>
