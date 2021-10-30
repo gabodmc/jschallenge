@@ -1,24 +1,22 @@
 /* This example requires Tailwind CSS v2.0+ */
 import { useEffect, useState } from "react";
-import { Fragment } from "react";
+// import { Fragment } from "react";
 import MovementsContainer from "./Movements/MovementsContainer";
-import { Disclosure, Menu, Transition } from "@headlessui/react";
-import { BellIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
+import { Disclosure} from "@headlessui/react";
+import {  MenuIcon, XIcon } from "@heroicons/react/outline";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import EditForm from "./Forms/EditForm";
 import CreateForm from "./Forms/CreateForm";
+import Search from "./Search/Search";
 
-const user = {
-  name: "Tom Cook",
-  email: "tom@example.com",
-  imageUrl:
-    "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-};
+// const user = {};
+
 const navigation = [
-  { name: "Inicio", href: "/", current: true },
-  { name: "Crear transacción", href: "/create", current: false },
+  { name: "Inicio", href: "/" , current: true },
+  { name: "Crear transacción", href: "/crear", current: true},
+  { name: "Buscar", href: "/search", current: true}
 ];
-const userNavigation = [{ name: "Sign out", href: "#" }];
+// const userNavigation = [{ name: "Sign out", href: "#" }];
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -100,12 +98,12 @@ export default function Home() {
                         </div>
                       </div>
                     </div>
-                   asdasd<div className="hidden md:block">
+                   <div className="hidden md:block">
                       <div className="ml-4 flex items-center md:ml-6">
 
 
                         {/* Profile dropdown */}
-                        <Menu as="div" className="ml-3 relative">
+                        {/* <Menu as="div" className="ml-3 relative">
                           <div>
                             <Menu.Button className="max-w-xs bg-gray-800 rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
                               <span className="sr-only">Open user menu</span>
@@ -143,7 +141,7 @@ export default function Home() {
                               ))}
                             </Menu.Items>
                           </Transition>
-                        </Menu> 
+                        </Menu>  */}
                       </div>
                     </div>
                     <div className="-mr-2 flex md:hidden">
@@ -183,7 +181,7 @@ export default function Home() {
                     ))}
                   </div>
                   <div className="pt-4 pb-3 border-t border-gray-700">
-                    <div className="flex items-center px-5">
+                    {/* <div className="flex items-center px-5">
                       <div className="flex-shrink-0">
                         <img
                           className="h-10 w-10 rounded-full"
@@ -206,8 +204,8 @@ export default function Home() {
                         <span className="sr-only">View notifications</span>
                         <BellIcon className="h-6 w-6" aria-hidden="true" />
                       </button>
-                    </div>
-                    <div className="mt-3 px-2 space-y-1">
+                    </div> */}
+                    {/* <div className="mt-3 px-2 space-y-1">
                       {userNavigation.map((item) => (
                         <Disclosure.Button
                           key={item.name}
@@ -218,7 +216,7 @@ export default function Home() {
                           {item.name}
                         </Disclosure.Button>
                       ))}
-                    </div>
+                    </div> */}
                   </div>
                 </Disclosure.Panel> 
               </>
@@ -248,6 +246,9 @@ export default function Home() {
                 </Route>
                 <Route path="/create" exact>
                   <CreateForm />
+                </Route>
+                <Route path="/search" exact>
+                  <Search movements={items} />
                 </Route>
               </Switch>
             </div>
