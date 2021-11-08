@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Formik } from "formik";
 import { CreateSchema } from "./TransactionSchema";
 
@@ -29,6 +30,7 @@ const CreateForm = () => {
           setTimeout(() => {
             resetForm();
           }, 2000);
+          alert("Transacción creada");
         }}
       >
         {({
@@ -132,7 +134,7 @@ const CreateForm = () => {
                             value={values.revenue}
                             className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                           >
-                            <option value="" disabled selected>
+                            <option value="" disabled>
                               - Seleccione una categoria -{" "}
                             </option>
                             <option value="1">Ingreso</option>
@@ -154,6 +156,14 @@ const CreateForm = () => {
                       >
                         {isSubmitting ? "Enviando" : "Enviar"}
                       </button>
+                      <Link to="/">
+                        <button
+                          type="button"
+                          className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+                        >
+                          Volver
+                        </button>
+                      </Link>
                     </div>
                   </div>
                 </form>

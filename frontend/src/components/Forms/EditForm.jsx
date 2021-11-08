@@ -1,9 +1,13 @@
 import React, {useEffect, useState } from "react";
+import { Link, useHistory } from "react-router-dom";
 import { Formik } from "formik";
 import { useParams } from "react-router-dom";
 import { EditSchema } from "./TransactionSchema";
 
 const EditForm = () => {
+  
+  const { id } = useParams();
+  const history = useHistory();
   const [movements, setMovements] = useState([]);
 
   useEffect(() => {
@@ -18,7 +22,7 @@ const EditForm = () => {
       })
       .catch((error) => console.log(error));
   };
-  const { id } = useParams();
+  
 
   const ManageDate = (date) => {
     let dateObj = new Date(date);
@@ -38,7 +42,8 @@ const EditForm = () => {
   let handleDeleteButton = (event) => {
     event.preventDefault();
     deleteMovement();
-    alert("Transacción eliminada");
+    alert("Transacción eliminada")
+    history.push('/');
   };
 
   return (
@@ -81,7 +86,8 @@ const EditForm = () => {
                   .then((response) => response.json())
                   .then((json) => console.log(json));
                 setSubmitting(false);
-                alert("Transacción Editada");
+                alert("Transacción modificada")
+                history.push('/');
               }, 1000);
             }}
           >
@@ -193,6 +199,15 @@ const EditForm = () => {
                           >
                             Borrar
                           </button>
+                          <Link to='/'>
+                      <button
+                        type="button"
+
+                        className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+                      >
+                        Volver
+                      </button>
+                      </Link>
                         </div>
                       </div>
                     </form>

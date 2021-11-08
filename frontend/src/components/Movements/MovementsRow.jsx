@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const MovementsRow = ({ transaction }) => {
   const ManageDate = (date) => {
     let dateObj = new Date(date);
@@ -39,12 +41,21 @@ const MovementsRow = ({ transaction }) => {
           ${transaction.amount}
         </td>
         <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-          <a
+          {/* <a
             href={`/edit/${transaction.id}`}
             className="text-indigo-600 hover:text-indigo-900"
           >
             Edit
-          </a>
+          </a> */}
+          <Link to={`/edit/${transaction.id}`}>
+                      <button
+                        type="button"
+
+                        className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                      >
+                        Editar
+                      </button>
+                      </Link>
         </td>
       </tr>
     </tbody>
