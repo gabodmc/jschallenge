@@ -16,7 +16,7 @@ DB_DIALECT=mysql
 
 
 # Sequelize ⌨
-
+La dependencia se encuentra incluida en package.json
 La DB fue creada con sequelize. Para que la misma funcione, debern ser ejecutados los siguientes comandos. Respetar el orden para evitar inconvenientes
 
 - **1** sequelize db:create
@@ -26,5 +26,5 @@ La DB fue creada con sequelize. Para que la misma funcione, debern ser ejecutado
 # Rutas de API disponibles 🔛
 
 - **Consulta de movimientos:** "https://localhost:3001/api/movements/"
-- **Consulta por concepto:** "http://localhost:3001/api/search?concept="
-- **Consulta por id:** "http://localhost:3001/api/id"
+- **Consulta por concepto:** "http://localhost:3001/api/movements/search?concept="
+- **Consulta por id:** "http://localhost:3001/api/movements/id"
