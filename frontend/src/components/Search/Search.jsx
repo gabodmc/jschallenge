@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import MovementsList from '../Movements/MovementsList'
+import MovementsList from "../Movements/MovementsList";
 
 const Search = () => {
   const [searchField, setSearchField] = useState("");
@@ -35,15 +35,21 @@ const Search = () => {
   function searchList() {
     if (searchShow) {
       return <MovementsList movements={filteredPersons} />;
-      //   return filteredPersons.map((transaction) => (
-      //     <SearchMovementContainer movements={transaction} />
-      //   ));
+    } else {
+      return (
+        <p
+          className="block text-md font-small text-gray-700"
+          style={{ textAlign: "center" }}
+        >
+          Usa palabras como por ejemplo "Alimentos" o "Transporte"
+        </p>
+      );
     }
   }
 
   return (
     <>
-    <br />
+      <br />
       <h3
         className="block text-lg font-medium text-gray-700"
         style={{ textAlign: "center" }}
@@ -75,7 +81,7 @@ const Search = () => {
             type="search"
             name="q"
             className="py-2 text-sm text-black  rounded-md pl-10 focus:outline-none focus:bg-white focus:text-black"
-            placeholder="Ej: Comida"
+            placeholder="Comida"
             onChange={handleChange}
           />
         </div>

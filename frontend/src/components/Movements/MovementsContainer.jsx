@@ -57,7 +57,7 @@ const MovementsContainer = () => {
               <Stack gap={2} className="col-md-5 mx-auto">
                 <br />
                 <Spinner animation="border" variant="primary">
-                  <span className="visually-hidden">Loading...</span>
+                  <span className="visually-hidden">Cargando...</span>
                   <br />
                 </Spinner>
                 <br />
