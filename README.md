@@ -39,7 +39,7 @@ La DB fue creada con sequelize. Para que la misma funcione, debern ser ejecutado
 - **2** sequelize db:migrate
 - **3 (opcional si queres cargar datos en la db)** sequelize db:seed:all
 
-### Rutas de API disponibles 🔛
+### Rutas de API en entorno local 🔛
 
 - **Consulta de movimientos:** "https://localhost:3001/api/movements/"
 - **Consulta por concepto:** "http://localhost:3001/api/movements/search?concept="
@@ -49,5 +49,7 @@ La DB fue creada con sequelize. Para que la misma funcione, debern ser ejecutado
 ### Links 🔗
 
 [Consulta de movimientos](https://nodeabm.herokuapp.com/api/movements)
+
 [Query Search de transacciones](https://nodeabm.herokuapp.com/api/movements/search?concept=)
+
 [Consulta por id](https://nodeabm.herokuapp.com/api/movements/REEMPLAZAR_NRO_ID)
