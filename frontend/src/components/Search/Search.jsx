@@ -1,9 +1,23 @@
-import React, { useState } from "react";
-import MovementsList from "../Movements/MovementsList";
+import React, { useState, useEffect } from "react";
+import MovementsList from '../Movements/MovementsList'
 
-const Search = ({ movements }) => {
+const Search = () => {
   const [searchField, setSearchField] = useState("");
   const [searchShow, setSearchShow] = useState(false);
+  const [movements, setMovements] = useState([]);
+
+  useEffect(() => {
+    datos();
+  }, []);
+
+  const datos = async () => {
+    await fetch("http://localhost:3001/api/movements/")
+      .then((response) => response.json())
+      .then((result) => {
+        setMovements(result.transactions);
+      })
+      .catch((error) => console.log(error));
+  };
 
   const filteredPersons = movements.filter((movements) => {
     return movements.concept.toLowerCase().includes(searchField.toLowerCase());
@@ -29,6 +43,7 @@ const Search = ({ movements }) => {
 
   return (
     <>
+    <br />
       <h3
         className="block text-lg font-medium text-gray-700"
         style={{ textAlign: "center" }}
@@ -36,20 +51,36 @@ const Search = ({ movements }) => {
         Buscar transacción por concepto
       </h3>
       <br />
-      <div class="flex relative mx-auto w-1/4 max-w-md">
-        <input
-          class="border-2 border-primary bg-red transition h-12 px-5 pr-16 rounded-md focus:outline-none w-full text-black text-lg "
-          type="search"
-          name="search"
-          placeholder="Ej: Comida"
-          onChange={handleChange}
-        />
-        <button
-          type="submit"
-          onChange={handleChange}
-          class="absolute right-2 top-3 mr-4"
-        ></button>
+      <div className="flex items-center justify-center">
+        <div className="relative text-black focus-within:text-black">
+          <span className="absolute inset-y-0 left-0 flex items-center pl-2">
+            <button
+              type="submit"
+              className="p-1 focus:outline-none focus:shadow-outline"
+            >
+              <svg
+                fill="none"
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                viewBox="0 0 24 24"
+                className="w-6 h-6"
+              >
+                <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+              </svg>
+            </button>
+          </span>
+          <input
+            type="search"
+            name="q"
+            className="py-2 text-sm text-black  rounded-md pl-10 focus:outline-none focus:bg-white focus:text-black"
+            placeholder="Ej: Comida"
+            onChange={handleChange}
+          />
+        </div>
       </div>
+
       <br />
       {searchList()}
     </>

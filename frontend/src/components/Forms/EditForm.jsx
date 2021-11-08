@@ -1,9 +1,23 @@
-import React from "react";
+import React, {useEffect, useState } from "react";
 import { Formik } from "formik";
 import { useParams } from "react-router-dom";
 import { EditSchema } from "./TransactionSchema";
 
-const EditForm = ({ movements }) => {
+const EditForm = () => {
+  const [movements, setMovements] = useState([]);
+
+  useEffect(() => {
+    datos();
+  }, []);
+
+  const datos = async () => {
+    await fetch("http://localhost:3001/api/movements/")
+      .then((response) => response.json())
+      .then((result) => {
+        setMovements(result.transactions);
+      })
+      .catch((error) => console.log(error));
+  };
   const { id } = useParams();
 
   const ManageDate = (date) => {

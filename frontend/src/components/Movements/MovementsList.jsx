@@ -1,15 +1,9 @@
-import { Spinner, Stack } from "react-bootstrap";
+/* eslint-disable eqeqeq */
+import { useParams } from "react-router";
+import MovementsRow from "./MovementsRow";
 
 export default function MovementsList({ movements }) {
-  const ManageDate = (date) => {
-    let dateObj = new Date(date);
-    let month = dateObj.getUTCMonth() + 1;
-    let day = dateObj.getUTCDate();
-    let year = dateObj.getUTCFullYear();
-
-    let newdate = day + "/" + month + "/" + year;
-    return newdate;
-  };
+  const { movementId } = useParams();
 
   return (
     <>
@@ -55,57 +49,19 @@ export default function MovementsList({ movements }) {
                     </th>
                   </tr>
                 </thead>
-                {movements.length ? (
-                  movements.map((transaction, index) => (
-                    <tbody
-                      key={index}
-                      className="bg-white divide-y divide-gray-200"
-                    >
-                      <tr>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                          {transaction.id}
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                          {transaction.concept}
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap">
-                          {transaction.revenue === 1 ? (
-                            <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-black-800">
-                              Ingreso
-                            </span>
-                          ) : (
-                            <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-black-800">
-                              Egreso
-                            </span>
-                          )}
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                          {ManageDate(transaction.date)}
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                          ${transaction.amount}
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                          <a
-                            href={`/edit/${transaction.id}`}
-                            className="text-indigo-600 hover:text-indigo-900"
-                          >
-                            Edit
-                          </a>
-                        </td>
-                      </tr>
-                    </tbody>
-                  ))
-                ) : (
-                  <Stack gap={2} className="col-md-5 mx-auto">
-                    <br />
-                    <Spinner animation="border" variant="primary">
-                      <span className="visually-hidden">Loading...</span>
-                      <br />
-                    </Spinner>
-                    <br />
-                  </Stack>
-                )}
+
+                {movementId !== undefined
+                  ? movements
+                      .filter((movements) => movements.revenue == movementId)
+                      .map((movements, index) => (
+                        <MovementsRow transaction={movements} key={index} />
+                      ))
+                  : movements
+                      .slice(movements.length - 10)
+                      .reverse()
+                      .map((movements, index) => (
+                        <MovementsRow transaction={movements} key={index} />
+                      ))}
               </table>
             </div>
           </div>

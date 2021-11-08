@@ -2,7 +2,7 @@ import React from "react";
 import { Formik } from "formik";
 import { CreateSchema } from "./TransactionSchema";
 
-const FormikForm = () => {
+const CreateForm = () => {
   return (
     <>
       <Formik
@@ -166,4 +166,4 @@ const FormikForm = () => {
   );
 };
 
-export default FormikForm;
+export default CreateForm;
