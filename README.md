@@ -13,9 +13,9 @@ Recorda instalar las dependencias con **npm i** o **npm install**.
 
 npm start
 
-### Links 🔗
+### Links Deploy🔗
 
-[Deploy en Heroku](https://gmcbudget.herokuapp.com/)
+- [Frontend Usuario](https://gmcbudget.herokuapp.com/)
 
 
 ## Backend🔩
@@ -35,9 +35,9 @@ DB_DIALECT=mysql
 La dependencia se encuentra incluida en package.json
 La DB fue creada con sequelize. Para que la misma funcione, debern ser ejecutados los siguientes comandos. Respetar el orden para evitar inconvenientes
 
-- **1** sequelize db:create
-- **2** sequelize db:migrate
-- **3 (opcional si queres cargar datos en la db)** sequelize db:seed:all
+- <pre><code>sequelize db:create</code></pre>
+- <pre><code>sequelize db:migrate</code></pre>
+- Opcional si queres cargar datos en la db) <pre><code>sequelize db:seed:all</code></pre>
 
 ### Rutas de API en entorno local 🔛
 
@@ -46,10 +46,8 @@ La DB fue creada con sequelize. Para que la misma funcione, debern ser ejecutado
 - **Consulta por id:** "http://localhost:3001/api/movements/id"
 
 
-### Links 🔗
+### Links Deploy 🔗
 
-[Consulta de movimientos](https://nodeabm.herokuapp.com/api/movements)
-
-[Query Search de transacciones](https://nodeabm.herokuapp.com/api/movements/search?concept=)
-
-[Consulta por id](https://nodeabm.herokuapp.com/api/movements/REEMPLAZAR_NRO_ID)
+- [Consulta de movimientos](https://nodeabm.herokuapp.com/api/movements)
+- [Query Search de transacciones](https://nodeabm.herokuapp.com/api/movements/search?concept=)
+- [Consulta por id](https://nodeabm.herokuapp.com/api/movements/REEMPLAZAR_NRO_ID)
