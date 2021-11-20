@@ -9,10 +9,10 @@ const MovementsContainer = () => {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
-    datos();
-  }, []);
+    data();
+  }, [balance]);
 
-  const datos = async () => {
+  const data = async () => {
     await fetch("http://localhost:3001/api/movements/")
       .then((response) => response.json())
       .then((result) => {
@@ -24,14 +24,6 @@ const MovementsContainer = () => {
 
   return (
     <>
-      {/*
-        This example requires updating your template:
-
-        ```
-        <html class="h-full bg-gray-100">
-        <body class="h-full">
-        ```
-      */}
       <div className="min-h-full">
         <main>
           <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">

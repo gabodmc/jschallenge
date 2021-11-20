@@ -57,7 +57,7 @@ export default function MovementsList({ movements }) {
                         <MovementsRow transaction={movements} key={index} />
                       ))
                   : movements
-                      .slice(movements.length - 10)
+                      .slice()
                       .reverse()
                       .map((movements, index) => (
                         <MovementsRow transaction={movements} key={index} />

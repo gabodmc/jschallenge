@@ -3,6 +3,7 @@ import { Link, useHistory } from "react-router-dom";
 import { Formik } from "formik";
 import { useParams } from "react-router-dom";
 import { EditSchema } from "./TransactionSchema";
+import Swal from "sweetalert2";
 
 const EditForm = () => {
   const { id } = useParams();
@@ -40,8 +41,20 @@ const EditForm = () => {
   let handleDeleteButton = (event) => {
     event.preventDefault();
     deleteMovement();
-    alert("Transacción eliminada");
-    history.push("/");
+    Swal.fire({
+      title: "Estas seguro de eliminar la transacción?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "green",
+      cancelButtonText: "Cancelar",
+      confirmButtonText: "Eliminar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire("Transacción eliminada", "");
+        history.push("/");
+      }
+    });
   };
 
   return (
@@ -61,32 +74,34 @@ const EditForm = () => {
             }}
             validationSchema={EditSchema}
             onSubmit={(values, { setSubmitting }) => {
-              setTimeout(() => {
-                fetch(`http://localhost:3001/api/movements/${id}`, {
-                  method: "PUT",
-                  body: JSON.stringify({
-                    concept:
-                      values.concept === ""
-                        ? movements.concept
-                        : values.concept,
-                    amount:
-                      values.amount === "" ? movements.amount : values.amount,
-                    revenue:
-                      values.revenue === ""
-                        ? movements.revenue
-                        : values.revenue,
-                    date: values.date === "" ? movements.date : values.date,
-                  }),
-                  headers: {
-                    "Content-type": "application/json; charset=UTF-8",
-                  },
-                })
-                  .then((response) => response.json())
-                  .then((json) => console.log(json));
-                setSubmitting(false);
-                alert("Transacción modificada");
-                history.push("/");
-              }, 1000);
+              fetch(`http://localhost:3001/api/movements/${id}`, {
+                method: "PUT",
+                body: JSON.stringify({
+                  concept:
+                    values.concept === "" ? movements.concept : values.concept,
+                  amount:
+                    values.amount === "" ? movements.amount : values.amount,
+                  revenue:
+                    values.revenue === "" ? movements.revenue : values.revenue,
+                  date: values.date === "" ? movements.date : values.date,
+                }),
+                headers: {
+                  "Content-type": "application/json; charset=UTF-8",
+                },
+              })
+                .then((response) => response.json())
+                .then((json) => console.log(json));
+              setSubmitting(false);
+              Swal.fire({
+                title: "Transacción modificada",
+                icon: "success",
+                confirmButtonColor: "green",
+                confirmButtonText: "Volver al listado",
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  history.push("/");
+                }
+              });
             }}
           >
             {({

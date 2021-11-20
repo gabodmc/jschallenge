@@ -1,36 +1,46 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { Formik } from "formik";
 import { CreateSchema } from "./TransactionSchema";
+import Swal from "sweetalert2";
 
 const CreateForm = () => {
+  let history = useHistory();
+
   return (
     <>
       <Formik
         initialValues={{ concept: "", amount: "", revenue: "", date: "" }}
         validationSchema={CreateSchema}
         onSubmit={(values, { setSubmitting, resetForm }) => {
-          setTimeout(() => {
-            fetch("http://localhost:3001/api/movements/", {
-              method: "POST",
-              body: JSON.stringify({
-                concept: values.concept,
-                amount: values.amount,
-                date: values.date,
-                revenue: values.revenue,
-              }),
-              headers: {
-                "Content-type": "application/json; charset=UTF-8",
-              },
-            })
-              .then((response) => response.json())
-              .then((json) => console.log(json));
-            setSubmitting(false);
-          }, 1000);
-          setTimeout(() => {
-            resetForm();
-          }, 2000);
-          alert("Transacción creada");
+          fetch("http://localhost:3001/api/movements/", {
+            method: "POST",
+            body: JSON.stringify({
+              concept: values.concept,
+              amount: values.amount,
+              date: values.date,
+              revenue: values.revenue,
+            }),
+            headers: {
+              "Content-type": "application/json; charset=UTF-8",
+            },
+          })
+            .then((response) => response.json())
+            .then((json) => console.log(json))
+            .then(
+              Swal.fire({
+                title: "Transacción creada",
+                icon: "success",
+                confirmButtonColor: "green",
+                confirmButtonText: "Volver al listado",
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  history.push("/");
+                }
+              })
+            );
+
+          setSubmitting(false);
         }}
       >
         {({
