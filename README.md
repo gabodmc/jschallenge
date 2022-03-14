@@ -6,8 +6,6 @@
 
 Recorda instalar las dependencias con **npm i** o **npm install**.
 
-[Dejame tu opinión en Linkedin](https://www.linkedin.com/feed/update/urn:li:activity:6860975632298369025/?commentUrn=urn%3Ali%3Acomment%3A(activity%3A6860933830874845184%2C6860975623041552384))
-
 ## Front End🖥
 ### Iniciando el repositorio local ⌨
 
