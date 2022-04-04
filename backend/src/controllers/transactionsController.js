@@ -1,8 +1,8 @@
-const { Transaction } = require("../../database/models");
+const { Transaction } = require("../database/models");
 const { Op } = require("sequelize");
 const { validationResult } = require("express-validator");
 
-const apiTransactionController = {
+const transactionsController = {
   list: (req, res) => {
     Transaction.findAll({
       attributes: ["id", "concept", "amount", "date", "revenue"],
@@ -22,7 +22,10 @@ const apiTransactionController = {
       return res.status(200).json({
         total: movements.length,
         balance: balanceTotal,
-        revenue_types: { 1: "income", 2: "outcome" },
+        revenue_types: {
+          1: "income",
+          2: "outcome",
+        },
         transactions: movements,
         status: 200,
       });
@@ -65,7 +68,9 @@ const apiTransactionController = {
         res.json(error);
       }
     } else {
-      res.status(400).json({ errors: errors.mapped() });
+      res.status(400).json({
+        errors: errors.mapped(),
+      });
     }
   },
 
@@ -83,7 +88,9 @@ const apiTransactionController = {
         res.json(error);
       }
     } else {
-      res.status(400).json({ errors: errors.mapped() });
+      res.status(400).json({
+        errors: errors.mapped(),
+      });
     }
   },
 
@@ -101,7 +108,11 @@ const apiTransactionController = {
     const query = req.query;
     const conceptKeyword = query.concept ? query.concept : "";
     Transaction.findAll({
-      where: { concept: { [Op.substring]: conceptKeyword } },
+      where: {
+        concept: {
+          [Op.substring]: conceptKeyword,
+        },
+      },
     }).then((transactions) => {
       if (transactions.length > 0) {
         return res.status(200).json(transactions);
@@ -111,4 +122,4 @@ const apiTransactionController = {
   },
 };
 
-module.exports = apiTransactionController;
+module.exports = transactionsController;
