@@ -21,5 +21,10 @@ const editTransaction = [
         .isFloat({max : 9000000}).withMessage('El valor máximo es 9 millones'),
 ];
 
+const userLogin = [
+    body('email').notEmpty().withMessage('El campo de email es obligatorio')
+    .isLength({min: 3}).withMessage('El email debe tener al menos 3 caracteres'),
+]
 
-module.exports = { validateTransaction, editTransaction }
+
+module.exports = { validateTransaction, editTransaction, userLogin };
